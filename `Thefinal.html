@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gamers Hub</title>
+
+    <style>
+        body {
+            background: #080812;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            margin: 0;
+        }
+
+        header {
+            padding: 30px;
+            color: #00eaff;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .plans {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: #151525;
+            border: 2px solid #00eaff;
+            border-radius: 15px;
+            width: 250px;
+            padding: 25px;
+            box-shadow: 0 0 20px #00eaff33;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            transition: 0.3s;
+            box-shadow: 0 0 30px #00eaff88;
+        }
+
+        h2 {
+            color: #00eaff;
+        }
+
+        .price {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        button {
+            background: #00eaff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #8a2be2;
+            color: white;
+        }
+
+        #payment {
+            display: none;
+            margin: 40px auto;
+            background: #151525;
+            padding: 30px;
+            width: 300px;
+            border-radius: 15px;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 8px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        #success {
+            color: #00ff88;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>🎮 GAMERS HUB</header>
+
+<p>Level up your gaming experience!</p>
+
+<div class="plans">
+
+    <div class="card">
+        <h2>🎮 Basic</h2>
+        <div class="price">$5</div>
+        <p>Gaming Community</p>
+        <p>Gaming Guides</p>
+        <p>Weekly Updates</p>
+        <button onclick="choose('Basic', 5)">
+            CHOOSE
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>⚡ Premium</h2>
+        <div class="price">$10</div>
+        <p>Everything in Basic</p>
+        <p>Exclusive Content</p>
+        <p>Priority Support</p>
+        <button onclick="choose('Premium', 10)">
+            CHOOSE
+        </button>
+    </div>
+
+    <div class="card">
+        <h2>👑 Elite</h2>
+        <div class="price">$15</div>
+        <p>Everything in Premium</p>
+        <p>VIP Community</p>
+        <p>Exclusive Events</p>
+        <button onclick="choose('Elite', 15)">
+            CHOOSE
+        </button>
+    </div>
+
+</div>
+
+
+<div id="payment">
+
+    <h2>💳 Subscription</h2>
+
+    <p id="plan"></p>
+
+    <input id="name" placeholder="Your Name">
+
+    <input id="details" placeholder="Payment Details">
+
+    <br>
+
+    <button onclick="pay()">
+        COMPLETE PAYMENT
+    </button>
+
+    <p id="success"></p>
+
+</div>
+
+
+<script>
+
+function choose(name, price) {
+
+    document.getElementById("payment").style.display = "block";
+
+    document.getElementById("plan").innerText =
+        name + " Plan - $" + price + "/month";
+
+    document.getElementById("success").innerText = "";
+}
+
+
+function pay() {
+
+    let name = document.getElementById("name").value;
+    let details = document.getElementById("details").value;
+
+    if (name == "" || details == "") {
+
+        alert("Please enter all details!");
+
+    } else {
+
+        document.getElementById("success").innerText =
+            "✅ Payment Successful! Welcome to Gamers Hub, " + name + "!";
+
+    }
+}
+
+</script>
+
+</body>
+</html>
