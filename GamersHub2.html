@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gamers Hub</title>
 
     <style>
         * {
@@ -12,52 +14,23 @@
         body {
             margin: 0;
             min-height: 100vh;
-            background: #101010;
+            background: #080812;
             color: white;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
-        .box {
-            width: 380px;
-            padding: 35px;
-            background: #1c1c1c;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 10px 40px #000;
-        }
+        /* =========================
+           COMMON
+        ========================= */
 
-        h1 {
-            margin-bottom: 25px;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 8px 0;
-            border: 0;
-            border-radius: 8px;
-            background: #292929;
-            color: white;
-            font-size: 15px;
+        .hidden {
+            display: none !important;
         }
 
         button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            border: 0;
-            border-radius: 8px;
-            background: #5865f2;
-            color: white;
-            font-weight: bold;
+            border: none;
             cursor: pointer;
-        }
-
-        button:hover {
-            background: #4752c4;
+            font-weight: bold;
         }
 
         a {
@@ -66,141 +39,138 @@
             text-decoration: none;
         }
 
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* =========================
+           LOGIN / SIGNUP
+        ========================= */
+
+        #authPage {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .auth-box {
+            width: 380px;
+            padding: 35px;
+            background: #151525;
+            border: 1px solid #272744;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 10px 40px #000;
+        }
+
+        .auth-logo {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .auth-box h1 {
+            color: #00eaff;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #999;
+            margin-bottom: 25px;
+        }
+
+        .auth-box input {
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            border: 1px solid #33334d;
+            border-radius: 9px;
+            background: #202035;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .auth-box input:focus {
+            border-color: #00eaff;
+        }
+
+        .primary-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border-radius: 9px;
+            background: #00eaff;
+            color: #080812;
+            font-size: 15px;
+        }
+
+        .primary-btn:hover {
+            background: #8a2be2;
+            color: white;
+        }
+
         .error {
             color: #ff7070;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #game {
-            text-align: center;
-        }
-
-        .logout {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 12px 25px;
-            background: #e74c3c;
+            background: #351c24;
+            padding: 10px;
             border-radius: 8px;
-            color: white;
         }
-    </style>
-</head>
 
-<body>
+        /* =========================
+           GAME / HUB
+        ========================= */
 
-<!-- LOGIN -->
-<div class="box" id="login">
-
-    <h1>Welcome Back</h1>
-
-    {% for msg in get_flashed_messages() %}
-        <p class="error">{{ msg }}</p>
-    {% endfor %}
-
-    <form method="POST" action="/">
-        <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            required
-        >
-
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-        >
-
-        <button type="submit">LOGIN</button>
-    </form>
-
-    <p>
-        Don't have an account?
-        <a onclick="showSignup()">Sign Up</a>
-    </p>
-
-</div>
-
-
-<!-- SIGN UP -->
-<div class="box hidden" id="signup">
-
-    <h1>Create Account</h1>
-
-    <form method="POST" action="/signup">
-
-        <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            minlength="3"
-            required
-        >
-
-        <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-        >
-
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            minlength="6"
-            required
-        >
-
-        <button type="submit">CREATE ACCOUNT</button>
-
-    </form>
-
-    <p>
-        Already have an account?
-        <a onclick="showLogin()">Login</a>
-    </p>
-
-</div>
-
-
-<script>
-function showSignup() {
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("signup").classList.remove("hidden");
-}
-
-function showLogin() {
-    document.getElementById("signup").classList.add("hidden");
-    document.getElementById("login").classList.remove("hidden");
-}
-</script>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Gamers Hub</title>
-
-    <style>
-        body {
-            background: #080812;
-            color: white;
-            font-family: Arial;
-            text-align: center;
-            margin: 0;
+        #hubPage {
+            min-height: 100vh;
         }
 
         header {
-            padding: 30px;
+            padding: 30px 20px 10px;
+            text-align: center;
+        }
+
+        .logo {
             color: #00eaff;
-            font-size: 35px;
+            font-size: 38px;
             font-weight: bold;
         }
 
+        .welcome {
+            color: #aaa;
+            margin-top: 8px;
+        }
+
+        .topbar {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user {
+            color: #00eaff;
+            font-weight: bold;
+        }
+
+        .logout {
+            padding: 9px 18px;
+            border-radius: 8px;
+            background: #e74c3c;
+            color: white;
+        }
+
+        .logout:hover {
+            background: #c0392b;
+        }
+
         .plans {
+            max-width: 1000px;
+            margin: 35px auto;
+            padding: 20px;
             display: flex;
             justify-content: center;
             gap: 20px;
@@ -208,162 +178,488 @@ function showLogin() {
         }
 
         .card {
+            width: 280px;
+            padding: 28px;
             background: #151525;
             border: 2px solid #00eaff;
-            border-radius: 15px;
-            width: 250px;
-            padding: 25px;
-            box-shadow: 0 0 20px #00eaff33;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 0 20px #00eaff22;
+            transition: 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            transition: 0.3s;
-            box-shadow: 0 0 30px #00eaff88;
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px #00eaff66;
         }
 
-        h2 {
+        .card h2 {
             color: #00eaff;
         }
 
         .price {
-            font-size: 35px;
+            margin: 15px 0;
+            font-size: 38px;
             font-weight: bold;
         }
 
-        button {
-            background: #00eaff;
-            border: none;
+        .card p {
+            color: #bbb;
+        }
+
+        .choose-btn {
+            margin-top: 15px;
             padding: 12px 25px;
             border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
+            background: #00eaff;
+            color: #080812;
         }
 
-        button:hover {
+        .choose-btn:hover {
             background: #8a2be2;
             color: white;
         }
 
+        /* =========================
+           PAYMENT
+        ========================= */
+
         #payment {
-            display: none;
-            margin: 40px auto;
-            background: #151525;
+            width: 340px;
+            max-width: calc(100% - 40px);
+            margin: 20px auto 50px;
             padding: 30px;
-            width: 300px;
-            border-radius: 15px;
+            background: #151525;
+            border: 1px solid #33334d;
+            border-radius: 16px;
+            text-align: center;
         }
 
-        input {
-            width: 90%;
+        #payment h2 {
+            color: #00eaff;
+        }
+
+        #selectedPlan {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        #payment input {
+            width: 100%;
             padding: 12px;
-            margin: 8px;
-            border-radius: 8px;
+            margin: 8px 0;
             border: none;
+            border-radius: 8px;
+            background: #202035;
+            color: white;
         }
 
-        #success {
-            color: #00ff88;
-            font-size: 20px;
+        .cancel-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: #33334d;
+            color: white;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .auth-box {
+                width: 100%;
+            }
+
+            .logo {
+                font-size: 30px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .card {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-<header>🎮 GAMERS HUB</header>
+<!-- =====================================================
+     LOGIN / SIGN UP
+===================================================== -->
 
-<p>Level up your gaming experience!</p>
+<section id="authPage">
 
-<div class="plans">
+    <!-- LOGIN -->
+    <div class="auth-box" id="loginBox">
 
-    <div class="card">
-        <h2>🎮 Basic</h2>
-        <div class="price">$5</div>
-        <p>Gaming Community</p>
-        <p>Gaming Guides</p>
-        <p>Weekly Updates</p>
-        <button onclick="choose('Basic', 5)">
-            CHOOSE
-        </button>
+        <div class="auth-logo">🎮</div>
+
+        <h1>GAMERS HUB</h1>
+
+        <p class="subtitle">
+            Welcome back, gamer!
+        </p>
+
+        {% for msg in get_flashed_messages() %}
+            <p class="error">{{ msg }}</p>
+        {% endfor %}
+
+        <form method="POST" action="/">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+            >
+
+            <button class="primary-btn" type="submit">
+                LOGIN
+            </button>
+
+        </form>
+
+        <p>
+            Don't have an account?
+            <a onclick="showSignup()">Sign Up</a>
+        </p>
+
     </div>
 
-    <div class="card">
-        <h2>⚡ Premium</h2>
-        <div class="price">$10</div>
-        <p>Everything in Basic</p>
-        <p>Exclusive Content</p>
-        <p>Priority Support</p>
-        <button onclick="choose('Premium', 10)">
-            CHOOSE
-        </button>
+
+    <!-- SIGN UP -->
+    <div class="auth-box hidden" id="signupBox">
+
+        <div class="auth-logo">🚀</div>
+
+        <h1>CREATE ACCOUNT</h1>
+
+        <p class="subtitle">
+            Join Gamers Hub
+        </p>
+
+        <form method="POST" action="/signup">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                minlength="3"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                minlength="6"
+                required
+            >
+
+            <button class="primary-btn" type="submit">
+                CREATE ACCOUNT
+            </button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a onclick="showLogin()">Login</a>
+        </p>
+
     </div>
 
-    <div class="card">
-        <h2>👑 Elite</h2>
-        <div class="price">$15</div>
-        <p>Everything in Premium</p>
-        <p>VIP Community</p>
-        <p>Exclusive Events</p>
-        <button onclick="choose('Elite', 15)">
-            CHOOSE
+</section>
+
+
+<!-- =====================================================
+     GAMERS HUB
+===================================================== -->
+
+<section id="hubPage" class="hidden">
+
+    <header>
+
+        <div class="logo">
+            🎮 GAMERS HUB
+        </div>
+
+        <div class="welcome">
+            Level up your gaming experience!
+        </div>
+
+    </header>
+
+
+    <div class="topbar">
+
+        <div>
+            Logged in as:
+            <span class="user" id="usernameDisplay"></span>
+        </div>
+
+        <button class="logout" onclick="logout()">
+            LOGOUT
         </button>
+
     </div>
 
-</div>
+
+    <!-- PLANS -->
+
+    <div class="plans">
+
+        <!-- BASIC -->
+        <div class="card">
+
+            <h2>🎮 Basic</h2>
+
+            <div class="price">
+                $5
+            </div>
+
+            <p>Gaming Community</p>
+            <p>Gaming Guides</p>
+            <p>Weekly Updates</p>
+
+            <button
+                class="choose-btn"
+                onclick="choosePlan('Basic', 5)"
+            >
+                CHOOSE
+            </button>
+
+        </div>
 
 
-<div id="payment">
+        <!-- PREMIUM -->
+        <div class="card">
 
-    <h2>💳 Subscription</h2>
+            <h2>⚡ Premium</h2>
 
-    <p id="plan"></p>
+            <div class="price">
+                $10
+            </div>
 
-    <input id="name" placeholder="Your Name">
+            <p>Everything in Basic</p>
+            <p>Exclusive Content</p>
+            <p>Priority Support</p>
 
-    <input id="details" placeholder="Payment Details">
+            <button
+                class="choose-btn"
+                onclick="choosePlan('Premium', 10)"
+            >
+                CHOOSE
+            </button>
 
-    <br>
+        </div>
 
-    <button onclick="pay()">
-        COMPLETE PAYMENT
-    </button>
 
-    <p id="success"></p>
+        <!-- ELITE -->
+        <div class="card">
 
-</div>
+            <h2>👑 Elite</h2>
+
+            <div class="price">
+                $15
+            </div>
+
+            <p>Everything in Premium</p>
+            <p>VIP Community</p>
+            <p>Exclusive Events</p>
+
+            <button
+                class="choose-btn"
+                onclick="choosePlan('Elite', 15)"
+            >
+                CHOOSE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div id="payment" class="hidden">
+
+        <h2>💳 Subscription</h2>
+
+        <p id="selectedPlan"></p>
+
+        <input
+            id="paymentName"
+            placeholder="Your Name"
+        >
+
+        <input
+            id="paymentDetails"
+            placeholder="Payment method"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="startPayment()"
+        >
+            CONTINUE TO PAYMENT
+        </button>
+
+        <button
+            class="cancel-btn"
+            onclick="closePayment()"
+        >
+            CANCEL
+        </button>
+
+    </div>
+
+</section>
 
 
 <script>
 
-function choose(name, price) {
+    /* =========================
+       LOGIN / SIGNUP UI
+    ========================= */
 
-    document.getElementById("payment").style.display = "block";
+    function showSignup() {
 
-    document.getElementById("plan").innerText =
-        name + " Plan - $" + price + "/month";
+        document
+            .getElementById("loginBox")
+            .classList.add("hidden");
 
-    document.getElementById("success").innerText = "";
-}
-
-
-function pay() {
-
-    let name = document.getElementById("name").value;
-    let details = document.getElementById("details").value;
-
-    if (name == "" || details == "") {
-
-        alert("Please enter all details!");
-
-    } else {
-
-        document.getElementById("success").innerText =
-            "✅ Payment Successful! Welcome to Gamers Hub, " + name + "!";
-
+        document
+            .getElementById("signupBox")
+            .classList.remove("hidden");
     }
-}
+
+
+    function showLogin() {
+
+        document
+            .getElementById("signupBox")
+            .classList.add("hidden");
+
+        document
+            .getElementById("loginBox")
+            .classList.remove("hidden");
+    }
+
+
+    /* =========================
+       DEMO HUB LOGIN
+    ========================= */
+
+    function enterHub(username) {
+
+        document
+            .getElementById("authPage")
+            .classList.add("hidden");
+
+        document
+            .getElementById("hubPage")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("usernameDisplay")
+            .innerText = username;
+    }
+
+
+    /* =========================
+       PLANS
+    ========================= */
+
+    function choosePlan(name, price) {
+
+        const payment =
+            document.getElementById("payment");
+
+        payment.classList.remove("hidden");
+
+        document.getElementById("selectedPlan").innerText =
+            name + " Plan - $" + price + "/month";
+
+        payment.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+
+
+    function closePayment() {
+
+        document
+            .getElementById("payment")
+            .classList.add("hidden");
+    }
+
+
+    /* =========================
+       PAYMENT
+    ========================= */
+
+    function startPayment() {
+
+        const name =
+            document.getElementById("paymentName").value.trim();
+
+        const method =
+            document.getElementById("paymentDetails").value.trim();
+
+        if (!name || !method) {
+
+            alert("Please enter all required details.");
+
+            return;
+        }
+
+        /*
+         * IMPORTANT:
+         * Connect this button to your real payment
+         * provider/backend here.
+         */
+
+        alert(
+            "Payment setup ready for " + name +
+            ". Connect your payment provider here."
+        );
+    }
+
+
+    /* =========================
+       LOGOUT
+    ========================= */
+
+    function logout() {
+
+        /*
+         * Flask session logout
+         */
+
+        window.location.href = "/logout";
+    }
 
 </script>
 
